@@ -8,6 +8,9 @@ def cat(a, b):
 def can_be_made_correct(output, inputs):
     @functools.cache
     def cachable(acc, start):
+        # assume positive inputs to the right of the colon
+        if acc > output:
+            return False
         if start == len(inputs):
             return output == acc
         return cachable(acc * inputs[start], start + 1) or \
