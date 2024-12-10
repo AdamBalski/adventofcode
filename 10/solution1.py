@@ -2,12 +2,12 @@ import collections
 
 lines = [[int(num) for num in line] for line in open("/dev/stdin").read().splitlines()]
 
-scores = collections.defaultdict(int)
+origins = collections.defaultdict(set)
 q = collections.deque()
 for i in range(len(lines)):
     for j in range(len(lines[0])):
         if lines[i][j] == 0:
-            scores[(i, j)] += 1
+            origins[(i, j)].add((i, j))
             q.appendleft((i, j))
 
 visited = set()
@@ -23,13 +23,14 @@ while q:
         if lines[next_i][next_j] != lines[i][j] + 1:
             continue
         q.appendleft((next_i, next_j))
-        scores[(next_i, next_j)] += scores[(i, j)]
+        for origin in origins[(i, j)]:
+            origins[(next_i, next_j)].add(origin)
 
 result = 0
 for i in range(len(lines)):
     for j in range(len(lines[0])):
         if lines[i][j] == 9:
-            result += scores[(i, j)]
+            result += len(origins[(i, j)])
 print(result)
             
 
