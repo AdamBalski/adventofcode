@@ -1,5 +1,5 @@
 import sys
-sys.path.append("..")
+sys.path.append('/'.join(__file__.split("/")[:-2]))
 import utils
 
 # Solves for (a, b) such that: 
@@ -17,10 +17,9 @@ def tokens(a_x, a_y, b_x, b_y, x, y):
         return 0
     return int(3 * a + b)
 
-result = 0
-data = utils.input_lines("Button A: X+{}, Y+{}\nButton B: X+{}, Y+{}\nPrize: X={}, Y={}\n")
-for extracted_fields in data:
-    result += tokens(*(int(field) for field in extracted_fields))
-print(result)
-
-
+input_format = [
+    "Button A: X+{}, Y+{}",
+    "Button B: X+{}, Y+{}",
+    "Prize: X={}, Y={}"
+]
+print(sum(tokens(*fields) for fields in utils.input_blocks(*input_format, default_func=int)))

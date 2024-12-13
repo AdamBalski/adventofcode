@@ -22,10 +22,9 @@ def tokens(a_x, a_y, b_x, b_y, x, y):
             tokens = min(tokens, 3 * a + b)
     return tokens
 
-result = 0
-data = utils.input_lines("Button A: X+{}, Y+{}\nButton B: X+{}, Y+{}\nPrize: X={}, Y={}\n")
-for extracted_fields in data:
-    result += tokens(*(int(field) for field in extracted_fields))
-print(result)
-
-
+input_format = [
+    "Button A: X+{}, Y+{}",
+    "Button B: X+{}, Y+{}",
+    "Prize: X={}, Y={}"
+]
+print(sum(tokens(*fields) for fields in utils.input_blocks(*input_format, default_func=int)))
