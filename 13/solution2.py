@@ -1,4 +1,6 @@
 import sys
+sys.path.append("..")
+import utils
 
 # Solves for (a, b) such that: 
 #     a * a_x + b * b_x = x 
@@ -13,12 +15,12 @@ def tokens(a_x, a_y, b_x, b_y, x, y):
     a = (x - b_x * b) / a_x
     if int(a) != a or int(b) != b:
         return 0
-    return 3 * a + b
+    return int(3 * a + b)
 
 result = 0
-for line in sys.stdin:
-    line = [int(num) for num in line.replace("Button A: X+", "").replace(", Y+", " ").replace("Button B: X+", " ").replace(" Prize: X=", " ").replace(", Y=", " ").rstrip().split()]
-    result += tokens(*line)
+data = utils.input_lines("Button A: X+{}, Y+{}\nButton B: X+{}, Y+{}\nPrize: X={}, Y={}\n")
+for extracted_fields in data:
+    result += tokens(*(int(field) for field in extracted_fields))
 print(result)
 
 

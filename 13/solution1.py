@@ -1,5 +1,8 @@
 import sys
 import math
+import sys
+sys.path.append("..")
+import utils
 
 def tokens(a_x, a_y, b_x, b_y, x, y):
     def possible_pairs(x, y, a_x, a_y, b_x, b_y):
@@ -20,10 +23,9 @@ def tokens(a_x, a_y, b_x, b_y, x, y):
     return tokens
 
 result = 0
-for line in sys.stdin:
-    line = [int(num) for num in line.replace("Button A: X+", "").replace(", Y+", " ").replace("Button B: X+", " ").replace(" Prize: X=", " ").replace(", Y=", " ").rstrip().split()]
-    result += tokens(*line)
-    print(tokens(*line))
+data = utils.input_lines("Button A: X+{}, Y+{}\nButton B: X+{}, Y+{}\nPrize: X={}, Y={}\n")
+for extracted_fields in data:
+    result += tokens(*(int(field) for field in extracted_fields))
 print(result)
 
 
