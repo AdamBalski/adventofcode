@@ -1,7 +1,7 @@
 import sys
 import math
 import sys
-sys.path.append("..")
+sys.path.append('/'.join(__file__.split("/")[:-2]))
 import utils
 
 def tokens(a_x, a_y, b_x, b_y, x, y):
