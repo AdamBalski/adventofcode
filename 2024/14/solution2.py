@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/'.join(__file__.split("/")[:-2]))
+sys.path.append('/'.join(__file__.split("/")[:-3]))
 import utils
 robots = list(utils.input_lines("p={int},{int} v={int},{int}"))
 

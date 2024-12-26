@@ -1,7 +1,7 @@
 import sys
 import collections
 import itertools
-sys.path.append('/'.join(__file__.split("/")[:-2]))
+sys.path.append('/'.join(__file__.split("/")[:-3]))
 import utils
 
 side_len = 71
